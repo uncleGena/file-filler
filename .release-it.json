@@ -1,0 +1,13 @@
+{
+  "git": {
+    "tagName": "v${version}"
+  },
+  "github": {
+    "release": true
+  },
+  "hooks": {
+    "before:release": [
+      "npm run build"
+    ]
+  }
+}

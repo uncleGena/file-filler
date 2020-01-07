@@ -1,0 +1,34 @@
+{
+  "name": "file-filler",
+  "version": "0.0.1",
+  "description": "automatically fill files after creation",
+  "main": "dist/index.cjs.js",
+  "module": "dist/index.esm.js",
+  "bin": {
+    "@unclegena/file-filler": "bin/file-filler",
+    "file-filler": "bin/file-filler"
+  },
+  "scripts": {
+    "build": "rollup -c",
+    "dev": "rollup -cw",
+    "release": "release-it"
+  },
+  "author": "Andrii Kudriavtsev",
+  "license": "ISC",
+  "dependencies": {
+    "@types/node": "^12.12.22",
+    "chalk": "^2.4.2",
+    "chokidar": "^3.3.1",
+    "dargs": "^7.0.0",
+    "esm": "^3.2.25",
+    "hygen": "^4.0.11",
+    "minimist": "^1.2.0",
+    "shelljs": "^0.8.3"
+  },
+  "devDependencies": {
+    "release-it": "*",
+    "rollup": "^1.27.14",
+    "rollup-plugin-typescript2": "^0.24.3",
+    "typescript": "^3.7.4"
+  }
+}

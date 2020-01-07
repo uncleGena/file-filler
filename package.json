@@ -26,6 +26,7 @@
     "shelljs": "^0.8.3"
   },
   "devDependencies": {
+    "dotenv": "^8.2.0",
     "release-it": "*",
     "rollup": "^1.27.14",
     "rollup-plugin-typescript2": "^0.24.3",

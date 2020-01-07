@@ -1,6 +1,8 @@
+var path = require('path');
+require('dotenv').config({ path: path.resolve(__dirname, '../.env') });
+console.log(process.env.GITHUB_TOKEN + ' dddddd');
 var chokidar = require('chokidar');
 var chalk = require('chalk');
-var path = require('path');
 var shell = require('shelljs');
 var minimist = require('minimist');
 var dargs = require('dargs');

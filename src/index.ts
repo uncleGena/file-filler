@@ -1,11 +1,9 @@
-const path = require('path')
-require('dotenv').config({ path: path.resolve(__dirname, '../.env') })
-console.log(process.env.GITHUB_TOKEN + ' dddddd')
 const chokidar = require('chokidar');
 const chalk = require('chalk');
 const shell = require('shelljs')
 const minimist = require('minimist')
 const dargs = require('dargs')
+const path = require('path')
 
 const WATCH_DIR = '.'
 

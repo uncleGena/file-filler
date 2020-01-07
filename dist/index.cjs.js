@@ -2,14 +2,12 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
-var path = require('path');
-require('dotenv').config({ path: path.resolve(__dirname, '../.env') });
-console.log(process.env.GITHUB_TOKEN + ' dddddd');
 var chokidar = require('chokidar');
 var chalk = require('chalk');
 var shell = require('shelljs');
 var minimist = require('minimist');
 var dargs = require('dargs');
+var path = require('path');
 var WATCH_DIR = '.';
 var watcher = chokidar.watch(WATCH_DIR, {
     ignored: ['**/node_modules/**', '**/.git/**', '**/_templates/**', '**/__tests__/**'],

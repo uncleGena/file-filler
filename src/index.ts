@@ -8,7 +8,7 @@ const path = require('path')
 const WATCH_DIR = '.'
 
 let watcher = chokidar.watch(WATCH_DIR, {
-  ignored: ['**/node_modules/**', '**/.git/**', '**/_templates/**', '**/__tests__/**'],
+  ignored: ['**/node_modules/**', '**/.git/**', '**/_templates/**', '**/__tests__/**', '**/.nuxt/**'],
   ignoreInitial: true,
   persistent: true
 });

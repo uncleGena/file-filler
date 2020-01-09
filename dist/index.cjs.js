@@ -10,7 +10,7 @@ var dargs = require('dargs');
 var path = require('path');
 var WATCH_DIR = '.';
 var watcher = chokidar.watch(WATCH_DIR, {
-    ignored: ['**/node_modules/**', '**/.git/**', '**/_templates/**', '**/__tests__/**'],
+    ignored: ['**/node_modules/**', '**/.git/**', '**/_templates/**', '**/__tests__/**', '**/.nuxt/**'],
     ignoreInitial: true,
     persistent: true
 });

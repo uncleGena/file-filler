@@ -1,20 +1,29 @@
 const chokidar = require('chokidar');
-const chalk = require('chalk');
 const shell = require('shelljs')
 const minimist = require('minimist')
 const dargs = require('dargs')
 const path = require('path')
+const fs = require('fs')
 
 const WATCH_DIR = '.'
 
+const ignoredFolders = [
+  'node_modules',
+  '.git',
+  '_templates',
+  '__tests__',
+  '.nuxt',
+  '.vscode'
+]
+
 let watcher = chokidar.watch(WATCH_DIR, {
-  ignored: ['**/node_modules/**', '**/.git/**', '**/_templates/**', '**/__tests__/**', '**/.nuxt/**'],
+  ignored: ignoredFolders.map(f => '**/' + f + '/**'),
   ignoreInitial: true,
   persistent: true
 });
 
 function doTheWork(path: string, argv: any) {
-  const { pathToFile, fileNameWithExtension, fileName, fileExtension } = parseFilePath(path)
+  const { pathToFile, fileNameWithExtension, fileName, fileExtension, hasContent } = parseFilePath(path)
 
   // pause watching for new files in order to prevent recursion 
   // because now we will create new files by hygen
@@ -25,7 +34,9 @@ function doTheWork(path: string, argv: any) {
   Object.keys(argv).map(generator => {
     const generatorValue = argv[generator]
     if (typeof generatorValue === 'string' && path.includes(generatorValue)) {
-      shell.exec(`HYGEN_OVERWRITE=1 hygen ${generator} new --fileNameWithExtension ${fileNameWithExtension} --pathToFile ${pathToFile} --fileName ${fileName} --fileExtension ${fileExtension} ${argsString}`)
+      if (!hasContent) {
+        shell.exec(`HYGEN_OVERWRITE=1 hygen ${generator} new --fileNameWithExtension ${fileNameWithExtension} --pathToFile ${pathToFile} --fileName ${fileName} --fileExtension ${fileExtension} ${argsString}`)
+      }
     }
   })
   // after creating new files, start watch again
@@ -43,6 +54,7 @@ function parseFilePath(p: string) {
     fileNameWithExtension: path.basename(p),
     fileName: path.basename(p).split('.')[0],
     fileExtension: path.basename(p).split('.').reverse()[0],
+    hasContent: fs.readFileSync(p, 'utf8')
   }
 }
 

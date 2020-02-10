@@ -1,0 +1,5 @@
+.env
+.release-it.json
+rollup.config.js
+tsconfig.json
+.gitignore
